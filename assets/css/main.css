@@ -1805,7 +1805,7 @@ input, select, textarea {
 				background: #222222;
 				color: #ffffff;
 				top: -2.75em;
-				font-size: 0.1em;
+				font-size: 0.3em;
 				height: 2.25em;
 				line-height: 2.25em;
 				left: 50%;
@@ -1846,7 +1846,7 @@ input, select, textarea {
 					border-bottom-width: 0.5em;
 				}
 
-		@media screen and (max-width: 980px) {
+		@media screen and (max-width: 500px) {
 
 			#nav a span {
 				display: none;
