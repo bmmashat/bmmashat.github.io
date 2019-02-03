@@ -1857,7 +1857,7 @@ input, select, textarea {
 /* Wrapper */
 
 	#wrapper {
-		width: 60em;
+		width: 45em;
 		margin: 0 auto;
 		min-height: 100vh;
 		max-width: 100%;
