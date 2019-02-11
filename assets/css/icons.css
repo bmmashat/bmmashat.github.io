@@ -5,18 +5,21 @@
 .footer-social-icons {
     width: 200px;
     display:block;
-    margin: 0 auto;
+    margin: auto;
 }
 .social-icon {
     color: #fff;
+    margin-left: auto;
+    margin-right: auto;
 }
 ul.social-icons {
     margin-top: 10px;
+    margin-left: 10px;
 }
 .social-icons li {
     vertical-align: top;
     display: inline;
-    height: 100px;
+    height: 50px;
 }
 .social-icons a {
     color: #fff;
@@ -30,7 +33,7 @@ ul.social-icons {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    background-color: #666565;
+    background-color: #0E5C96;
 }
 .fa-twitter:hover {
     background-color: #00aced;
@@ -43,7 +46,7 @@ ul.social-icons {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    background-color: #666565;
+    background-color: #0E5C96;
 }
 .fa-linkedin:hover {
     background-color: #0073a4;
@@ -55,7 +58,7 @@ ul.social-icons {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    background-color: #666565;
+    background-color: #0E5C96;
 }
 .fa-github:hover {
     background-color: #6e5494;
