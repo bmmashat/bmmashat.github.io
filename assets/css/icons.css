@@ -63,3 +63,17 @@ ul.social-icons {
 .fa-github:hover {
     background-color: #6e5494;
 }
+
+}
+.fa-file-text-o {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #0E5C96;
+}
+.fa-file-text-o:hover {
+    background-color: #6e5494;
+}
