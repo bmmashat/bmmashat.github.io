@@ -4,6 +4,8 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using CharacterCreation;
+using Proyecto26;
+using UnityEngine.Events;
 
 public static class Serialization
 {
@@ -13,10 +15,8 @@ public static class Serialization
 
     public static GameLog log;
     public static float lastTime = 0;
-
     public static void Serialize(string path, SaveData obj)
     {
-
         if (!MainMenu.isOffline)
         {
 
@@ -39,7 +39,7 @@ public static class Serialization
 
             Firebase.instance.SaveData(obj, () =>
             {
-                long ticks = GetDateTime().Ticks;
+                long ticks = Firebase.instance.currentTime.Ticks;
                 ticks += new System.DateTime(1970, 1, 1).Ticks;
                 System.DateTime time = new System.DateTime(ticks, System.DateTimeKind.Utc);
                 time = time.ToLocalTime();
@@ -98,26 +98,8 @@ public static class Serialization
         }
     }
 
-    public static System.DateTime GetDateTime()
-    {
-        System.DateTime dateTime = System.DateTime.MinValue;
-        System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create("http://www.microsoft.com");
-        request.Method = "GET";
-        request.Accept = "text/html, application/xhtml+xml, */*";
-        request.UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)";
-        request.ContentType = "application/x-www-form-urlencoded";
-        request.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
-        System.Net.HttpWebResponse response = (System.Net.HttpWebResponse)request.GetResponse();
-        if (response.StatusCode == System.Net.HttpStatusCode.OK)
-        {
-            string todaysDates = response.Headers["date"];
 
-            dateTime = System.DateTime.ParseExact(todaysDates, "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
-                System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat, System.Globalization.DateTimeStyles.AssumeUniversal);
-        }
 
-        return dateTime;
-    }
     public static object Deserialize(string path)
     {
         object result = null;

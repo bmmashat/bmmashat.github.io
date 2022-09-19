@@ -43,6 +43,7 @@ public class Firebase : MonoBehaviour
 
     User user = new User();
     SignInData signInData = new SignInData();
+    public System.DateTime currentTime => System.DateTime.Now;
 
     void Awake()
     {
@@ -52,9 +53,10 @@ public class Firebase : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+
     }
 
-    public void SignUp(string email, string password, string fullName,UnityAction onComplete, UnityAction<Proyecto26.RequestException> onFailed)
+    public void SignUp(string email, string password, string fullName, UnityAction onComplete, UnityAction<Proyecto26.RequestException> onFailed)
     {
         string json = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
         RestClient.Post<User>(signUpLink, json).Then(data =>
@@ -138,7 +140,6 @@ public class Firebase : MonoBehaviour
                 onFailed.Invoke();
             });
     }
-
 
     [SerializeField]
     class Shedule
