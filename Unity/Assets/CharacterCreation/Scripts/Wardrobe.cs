@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 
 
 namespace CharacterCreation {
+    using System.Linq;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -370,4 +371,29 @@ namespace CharacterCreation {
             return frames.GetHashCode();
         }
     }
+
+    [Serializable]
+    public class Frame 
+    {
+        public string id = string.Empty;
+        Sprite _sprite;
+        public Sprite sprite 
+        {
+            get 
+            {
+                if(_sprite == null) 
+                {
+                    var frame = Wardrobe.Singleton.frames.FirstOrDefault(f => f.id == id);
+                    if(frame != null) 
+                    {
+                        _sprite = frame.sprite;
+                    }
+                }
+
+                return _sprite;
+            }
+        }
+        public bool flip;
+    }
+
 }
