@@ -156,7 +156,7 @@ namespace CharacterCreation {
                                 for (int k = 0; k < frameCount; k++) {
                                     GUILayout.BeginVertical();
                                     Frame f = l.directions[j].frames[k];
-                                    f.sprite = EditorGUILayout.ObjectField("Frame " + (k + 1).ToString(), (UnityEngine.Object)f.sprite, typeof(Sprite), false) as Sprite;
+                                    //f.sprite = EditorGUILayout.ObjectField("Frame " + (k + 1).ToString(), (UnityEngine.Object)f.sprite, typeof(Sprite), false) as Sprite;
                                     f.flip = EditorGUILayout.Toggle("Flip horizontal", f.flip);
                                     GUILayout.EndVertical();
                                 }
@@ -227,7 +227,7 @@ namespace CharacterCreation {
 
         public Location[] locations;
         public List<Palette> palettes;
-
+        public List<FrameData> frames = new List<FrameData>();
         public static Wardrobe Singleton {
             get {
                 if (SingletonPrivate == null)
@@ -236,6 +236,34 @@ namespace CharacterCreation {
             }
         }
         private static Wardrobe SingletonPrivate;
+
+        [Serializable]
+        public class FrameData 
+        {
+            public string id = string.Empty;
+            public Sprite sprite;
+
+            public FrameData(string id, Sprite sprite)
+            {
+                this.id = id;
+                this.sprite = sprite;
+            }
+        }
+        //void OnValidate()
+        //{
+        //    frames.Clear();
+        //    foreach (var location in locations)
+        //        foreach (var version in location.versions)
+        //            foreach (var layer in version.layers)
+        //                foreach (var direction in layer.directions)
+        //                    foreach (var frame in direction.frames)
+        //                    {
+        //                        frame.id = GUID.Generate().ToString();
+        //                        frames.Add(new FrameData(frame.id, frame.sprite));
+        //                    }
+
+        //    EditorUtility.SetDirty(this);
+        //}
 
         public Wardrobe() {
             locations = new Location[6];
@@ -340,16 +368,6 @@ namespace CharacterCreation {
 
         public override int GetHashCode () {
             return frames.GetHashCode();
-        }
-    }
-
-    [Serializable]
-    public class Frame {
-        public Sprite sprite;
-        public bool flip = false;
-
-        public override int GetHashCode () {
-            return (sprite.GetHashCode() + flip.GetHashCode()).GetHashCode();
         }
     }
 }
